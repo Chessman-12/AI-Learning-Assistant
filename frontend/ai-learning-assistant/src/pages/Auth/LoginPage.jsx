@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 
 const LoginPage = () => {
 
-    const [email, setEmail] = useState('alex@timetoprogram.com');
-    const [password, setPassword] = useState('Test@1234');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [focusedField, setFocusedField] = useState(null);
@@ -35,7 +35,7 @@ const LoginPage = () => {
 
     return (
         <div className='flex items-center justify-center min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-50'>
-            <div className='absolute inset-0 bg-[radial-gradient(#e5e7eb_1px, transparent_1px)] bg-size-[16px_16px]' opacity-30 />
+            <div className='absolute inset-0 bg-[radial-gradient(#e5e7eb_1px, transparent_1px)] bg-size-[16px_16px] opacity-30'/>
 
             <div className='relative w-full max-w-md px-8'>
                 <div className='bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-3xl shadow-xl shadow-slate-200/50 p-10'>
@@ -102,8 +102,8 @@ const LoginPage = () => {
 
                         {/* Error Message */}
                         {error && (
-                            <div className=''>
-                                <p className=''>{error}</p>
+                            <div className='rounded-lg bg-red-50 border border-red-200 p-3'>
+                                <p className='text-xs text-red-600 font-medium text-center'>{error}</p>
                             </div>
                         )}
 
@@ -111,30 +111,30 @@ const LoginPage = () => {
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
-                            className=''
+                            className='group relative w-full h-12 bg-linear-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 disabled:o0pacity-50 disabled:cursor-not-allowed disabled:active:scale-100 shadow-lg shadow-emerald-500/25 overflow-hidden'
                         >
-                            <span className=''>
+                            <span className='relative z-10 flex intems-center justify-center gap-2'>
                                 {loading ? (
                                     <>
-                                        <div className='' />
+                                        <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin' />
                                         Signin in...
                                     </>
                                 ) : (
                                     <>
                                         Sign In
-                                        <ArrowRight className='' strokeWidth={2.5} />
+                                        <ArrowRight className='w-4 h-4 gro' strokeWidth={2.5} />
                                     </>
                                 )}
                             </span>
-                            <div className='' />
+                            <div className='absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700' />
                         </button>
                     </div>
 
                     {/* Footer */}
-                    <div className=''>
-                        <p className=''>
+                    <div className='mt-8 pt-6 border-t border-slate-200/60'>
+                        <p className='text-center text-sm text-slate-600'>
                             Don't have an account?{' '}
-                            <Link to='/register' className=''>
+                            <Link to='/register' className='font-semibold text-emerald-600 hover:text-emerald-700 transition-colors duration-200'>
                                 Sign Up
                             </Link>
                         </p>
@@ -142,7 +142,7 @@ const LoginPage = () => {
                 </div>
 
                 {/* Subtle footer text */}
-                <p className=''>
+                <p className='text-center text-xs text-slate-400 mt-6'>
                     By continuing, you agree to our Terms & Privacy Policy.
                 </p>
             </div>
