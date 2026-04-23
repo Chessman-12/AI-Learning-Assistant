@@ -13,10 +13,10 @@ const login = async (email, password) => {
     }
 };
 
-const register = async (name, email, password) => {
+const register = async (username, email, password) => {
     try {
         const response = await axioInstance.post(API_PATHS.AUTH.REGISTER, {
-            name,
+            username,
             email,
             password
         });
@@ -35,9 +35,12 @@ const getProfile = async () => {
     }
 };
 
-const updateProfile = async (name, email) => {
+const updateProfile = async (username, email) => {
     try {
-        const response = await axioInstance.put(API_PATHS.AUTH.UPDATE_PROFILE, userData);
+        const response = await axioInstance.put(API_PATHS.AUTH.UPDATE_PROFILE, {
+            username,
+            email
+        });
         return response.data;
     } catch (error) {
         throw error.response?.data || { message: 'An unknown error occurred.' }
@@ -46,7 +49,10 @@ const updateProfile = async (name, email) => {
 
 const changePassword = async (currentPassword, newPassword) => {
     try {
-        const response = await axioInstance.post(API_PATHS.AUTH.CHANGE_PASSWORD, password);
+        const response = await axioInstance.post(API_PATHS.AUTH.CHANGE_PASSWORD, {
+            currentPassword,
+            newPassword
+        });
         return response.data;
     } catch (error) {
         throw error.response?.data || { message: 'An unknown error occurred.' }
