@@ -26,10 +26,11 @@ const DocumentListPage = () => {
     const fetchDocuments = async () => {
         try {
             const data = await documentService.getDocuments();
-            setDocuments(data);
+            setDocuments(Array.isArray(data) ? data : []);
         } catch (error) {
             toast.error("Failed to fetch documents.");
             console.error(error);
+            setDocuments([]);
         } finally {
             setLoading(false);
         }
@@ -103,7 +104,7 @@ const DocumentListPage = () => {
             );
         }
 
-        if (documents.length === 0) {
+        if (!Array.isArray(documents) || documents.length === 0) {
             return (
                 <div className="flex items-center justify-center min-h-[400px]">
                     <div className="text-center max-w-md">
@@ -172,7 +173,52 @@ const DocumentListPage = () => {
                 {renderContent()}
             </div>
 
+            <div className="">
+                <div classNam="">
+                    {/* Close button */}
+                    <button
+                        onClick={() => setIsUploadModalOpen(false)}
+                        className=""
+                    >
+                        <X className="" strokeWidth={2} />
+                    </button>
 
+                    {/* Modal Header */}
+                    <div className="">
+                        <h2 className="">
+                            Upload New Document
+                        </h2>
+                        <p classname="">
+                            Add a PDF document to your library
+                        </p>
+                    </div>
+
+                    {/* Form */}
+                    <form onSubmit={handleUpload} className="">
+                        {/* Title Input */}
+                        <div className="">
+                            <label classname="">
+                                Document Title
+                            </label>
+                            <input
+                                type="text"
+                                value={uploadTitle}
+                                onChange={(e) => setUploadTitle(e.target.value)}
+                                required
+                                className=""
+                                placeholder="e.g., React Interview Prep"
+                            />
+                        </div>
+
+                        {/* File Upload */}
+                        <div className="">
+                            <label className="">
+
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
